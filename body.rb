@@ -7,14 +7,13 @@ class Body
 	T = 25000
 	G = 6.67408 * 10 ** (-11)
 
-	def initialize(x, y, vel_x, vel_y, mass, image, window)
+	def initialize(x, y, vel_x, vel_y, mass, image)
 		@x = x.to_f
 		@y = y.to_f
 		@vel_x = vel_x.to_f
 		@vel_y = vel_y.to_f
-		@mass = mass
+		@mass = mass.to_f
 		@image = image
-		@window = window
 	end
 
 
@@ -25,7 +24,7 @@ class Body
 	end
 
 	def compare(other_body)
-		
+
 		@r = Math.sqrt((x - other_body.x) ** 2 + (y - other_body.y) ** 2)
 		@dx = x - other_body.x
 		@dy = y - other_body.y
@@ -36,7 +35,6 @@ class Body
 		@a = @F / mass
 		@vel_y = (@a * T)
 		@vel_x = (@a * T)
-
 	end
 
 	def draw
