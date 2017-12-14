@@ -1,45 +1,54 @@
 require "gosu"
-require_relative "z_order"
-require_relative "body"
-require_relative "reader"
+require "./z_order"
+require "./body"
+require "./simulation"
+
 
 class NbodySimulation < Gosu::Window
 
   def initialize
     super(640, 640, false)
-    
-    @the_planets = Reader.read("simulations/planets.txt")
+    self.caption = "NBody simulation"
 
   end
 
   def update
-  	@body4.compare(@body)
-  	@body.compare(@body4)
-
-  	self.caption = @body4.x, + @body4.y, + @body4.vel_x, + @body4.vel_y
-
-
-  	@body.update
-  	@body2.update
-  	@body3.update
-  	@body4.update
-  	@body5.update
+  	@simulation.update
   end
 
   def draw
     @background_image.draw(0, 0, ZOrder::Background)
-    @body.draw
-    @body2.draw
-    @body3.draw
-    @body4.draw
-    @body5.draw
+    @simulation.draw
   end
 
   def button_down(id)
     close if id == Gosu::KbEscape
   end
+
+  def read(file)
+		File.open("./simulations/#{filename}") do |a|
+			a.each_line.with_index do |line, i|
+				if i == 0
+					amount_of_bodies = line
+				elsif i == 1
+					@radius = line
+				else
+					pieces = line.gsub(/\s+/m, ' ').strip.split(" ")
+					if pieces[0] == nil
+						next
+					end
+					if pieces[0] == "Creator"
+						break
+					end
+					@bodies.push(Body.new(pieces[0], pieces[1], pieces[2], pieces[3], pieces[4], pieces[5]))
+				end
+			end
+		end
+		return Simulation.new(amount_of_bodies, radius, bodies)
+	end
   
 end
 
 window = NbodySimulation.new
 window.show
+window.read("planets.txt")

@@ -1,6 +1,7 @@
 require "gosu"
 require "./body"
 require "./nbody"
+require "./simulation"
 
 module Reader
 	def Reader.read(filename)

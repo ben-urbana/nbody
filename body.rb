@@ -17,9 +17,9 @@ class Body
 		@window = window
 	end
 
-	def update
-		
 
+
+	def update
 		@x += @vel_x
 		@y += @vel_y
 	end
@@ -34,8 +34,8 @@ class Body
 		@Fx = @F * (@dx / @r)
 		@Fy = @F * (@dy / @r)
 		@a = @F / mass
-		@vel_y = (@a * T) / 2.50e13
-		@vel_x = (@a * T) / 2.50e13
+		@vel_y = (@a * T)
+		@vel_x = (@a * T)
 
 	end
 
