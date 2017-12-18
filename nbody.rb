@@ -8,7 +8,8 @@ class NbodySimulation < Gosu::Window
 
 	def initialize
     	super(640, 640, false)
-    	self.caption = "NBody simulation"
+    	
+    	@background_image = Gosu::Image.new("images/space.jpg", tileable: true)
     	self.read("planets.txt")
     end
 
@@ -30,7 +31,7 @@ class NbodySimulation < Gosu::Window
 					if pieces[0] == "Creator"
 						break
 					end
-					bodies.push(Body.new(pieces[0], pieces[1], pieces[2], pieces[3], pieces[4], pieces[5]))
+					bodies.push(Body.new(pieces[0].to_f, pieces[1].to_f, pieces[2], pieces[3], pieces[4], pieces[5]))
 				end
 			end
 		end
