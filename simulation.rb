@@ -12,14 +12,14 @@ class Simulation
 	end
 
 	def update
-		bodies.each_with_index do |body, i|
+		bodies.each do |body|
 			body.compare(bodies)
 		end
 	end
 
 	def draw
 		bodies.each do |body|
-			body.draw
+			body.draw(@radius)
 		end
 	end
 end
