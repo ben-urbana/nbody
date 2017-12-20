@@ -10,7 +10,7 @@ class NbodySimulation < Gosu::Window
       super(640, 640, false)
       
       @background_image = Gosu::Image.new("images/space.jpg", tileable: true)
-      self.read("hypnosis.txt")
+      self.read("planets.txt")
     end
 
     def read(file)
@@ -31,7 +31,7 @@ class NbodySimulation < Gosu::Window
           if pieces[0] == "Creator"
             break
           end
-          bodies.push(Body.new(pieces[0].to_f, pieces[1].to_f, pieces[2].to_f, pieces[3].to_f, pieces[4].to_f, pieces[5]))
+          bodies.push(Body.new(pieces[0].to_f, pieces[1].to_f, pieces[2].to_f, pieces[3].to_f, pieces[4].to_f, pieces[5], pieces[6].to_f, pieces[7].to_f))
 
         end
       end
